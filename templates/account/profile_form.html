@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+プロフィール設定
+{% endblock %}
+
+{% block content %}
+<section class="w-50 mx-auto my-5">
+    <h2 class="text-center my-5">
+        プロフィール
+    </h2>
+    <div class="">
+        <p>イメージ画像</p>
+        {% if profile_data.image %}
+            <img src="{{ profile_data.image.url }}" alt="ユーザーイメージ">
+        {% else %}
+            <img src="{% static 'account/user_image/オーキド博士.jpg'%}" alt="デフォルトユーザーイメージ">
+        {% endif %}
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="text-end">
+            <button type="submit" class="btn btn-primary">更新</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

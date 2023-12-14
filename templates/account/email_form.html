@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+メールアドレス設定
+{% endblock %}
+
+{% block content %}
+<section class="w-50 mx-auto my-5">
+    <h2 class="text-center my-5">
+        メールアドレス
+    </h2>
+    <div class="">
+        <p>現在のメールアドレス：{{ user_data.email }}</p>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="text-end">
+            <button type="submit" class="btn btn-primary">更新</button>
+        </div>
+    </form>
+</section>
+{% endblock %}
