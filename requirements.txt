@@ -1,6 +1,7 @@
 asgiref==3.7.2
 autopep8==2.0.4
 Django==4.2.7
+django-cleanup==8.0.0
 Pillow==9.5.0
 pycodestyle==2.11.1
 sqlparse==0.4.4

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}アカウント退会{% endblock %}
+
+{% block content %}
+<section class="w-50 mx-auto my-5">
+    <h2 class="text-center my-5">
+        アカウント退会
+    </h2>
+    <p class="text-center my-5">
+        退会するとすべてのデータが削除されます。
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="text-center">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('本当に退会しますか？')">退会する</button>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if 'login' in request.path %}
+ログイン
+{% else %}
+新規登録
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="w-50 mx-auto my-5">
+    <h2 class="text-center my-5">
+        {% if 'login' in request.path %}
+        ログイン
+        {% else %}
+        新規登録
+        {% endif %}
+    </h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="text-end">
+            {% if 'login' in request.path %}
+            <button type="submit" class="btn btn-primary">ログイン</button>
+            <div class="text-center">
+                <a href="{% url 'account:signup' %}" class="link-secondary">新規登録はこちら</a>
+            </div>
+            {% else %}
+            <button type="submit" class="btn btn-primary">新規登録</button>
+            <div class="text-center">
+                <a href="{% url 'account:login' %}" class="link-secondary">ログインはこちら</a>
+            </div>
+            {% endif %}
+        </div>
+    </form>
+</section>
+{% endblock %}
