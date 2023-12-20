@@ -96,7 +96,6 @@ Profile
 """
 def upload_image_to(instance, filename):
     image_id = str(instance.user.id)
-    print(image_id)
     return os.path.join('account', 'user_image', image_id, filename)
 
 class Profile(models.Model):
