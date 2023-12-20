@@ -184,11 +184,11 @@ class ProfileForm(forms.ModelForm):
         })
     )
 
-    image = forms.ImageField(
-        required=False,
-        label='イメージ画像',
-        widget=forms.FileInput,
-        )
+    # image = forms.ImageField(
+    #     required=False,
+    #     label='イメージ画像',
+    #     widget=forms.FileInput,
+    #     )
 
     def __init__(self, *args, **kwargs):
         for field in self.base_fields.values():

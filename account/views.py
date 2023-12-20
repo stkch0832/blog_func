@@ -134,15 +134,10 @@ def user_profile(request):
     profile_data = get_object_or_404(models.Profile, user_id=request.user.pk)
 
     if request.method == 'POST':
-        form = forms.ProfileForm(request.POST or None, request.FILES or None)
+        form = forms.ProfileForm(request.POST or None, request.FILES or None, instance=profile_data)
 
         if form.is_valid():
             try:
-                profile_data.username = form.cleaned_data['username']
-                profile_data.introduction = form.cleaned_data['introduction']
-                profile_data.birth = form.cleaned_data['birth']
-                if form.cleaned_data['image']:
-                    profile_data.image = form.cleaned_data['image']
                 profile_data.save()
                 messages.success(request, 'プロフィールを更新しました')
                 return redirect('account:profile')
