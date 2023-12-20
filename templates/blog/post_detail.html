@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}投稿詳細{% endblock %}
+
+{% block content %}
+<h2 class="my-5 text-center">投稿詳細</h2>
+
+<div class="text-center">
+    <p>タイトル: {{ post_data.title }}</p>
+    {% if post_data.image %}
+    <img class="w-25 h-25" src="{{ post_data.image.url }}" alt="投稿画像">
+    {% endif %}
+    <p>本文: <br>{{ post_data.content|linebreaksbr }}</p>
+    <p>作成日時: {{ post_data.created_at }}</p>
+    <p>更新日時: {{ post_data.updated_at }}</p>
+    {% if post_data.user == request.user %}
+    <a href="{% url 'blog:edit' post_data.pk %}" class="btn btn-primary">編集</a>
+    <a href="{% url 'blog:delete' post_data.pk %}" class="btn btn-danger" onclick="return confirm('{{post_data}} を本当に削除しますか？')">削除</a>
+    {% endif %}
+</div>
+{% endblock %}
