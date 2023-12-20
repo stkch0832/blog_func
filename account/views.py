@@ -52,7 +52,7 @@ def user_login(request):
                 if user.is_active:
                     login(request, user)
                     messages.success(request, 'ログインが完了しました')
-                    return redirect('account:index')
+                    return redirect('blog:index')
                 else:
                     messages.error(request, 'ユーザー登録が完了していません')
             else:

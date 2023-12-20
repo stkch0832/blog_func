@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if request.url in 'new' %}
+新規投稿
+{% else %}
+投稿編集
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="mx-auto">
+<h2 class="my-5 text-center">
+    {% if request.url in 'new' %}
+    新規投稿
+    {% else %}
+    投稿編集
+    {% endif %}
+</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <div class="text-end">
+        <button type="submit" class="btn btn-primary">
+            {% if request.url in 'new' %}
+            新規投稿
+            {% else %}
+            更新
+            {% endif %}
+        </button>
+    </div>
+</form>
+</div>
+{% endblock %}

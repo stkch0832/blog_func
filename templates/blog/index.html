@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}投稿一覧{% endblock %}
+
+{% block content %}
+<h2 class="my-5 text-center">投稿一覧</h2>
+
+
+<div class="text-center">
+    {% for posts in posts %}
+    <div class="card w-50 mx-auto" style="width: 18rem;">
+        <p class="card-text my-3">{{ posts.user.profile.username }}</p>
+        {% if posts.image %}
+        <img src="{{ posts.image.url }}" class="card-img-top w-50 h-50 m-auto" alt="投稿画像">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ posts.title }}</h5>
+            <p class="card-text">
+                {{ posts.content | truncatechars:20 | linebreaksbr }}<br>
+                投稿日: {{ posts.created_at | date:"Y/m/d"}}
+            </p>
+            <a href="{% url 'blog:detail' pk=posts.pk %}" class="btn btn-primary">詳しく見る</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
